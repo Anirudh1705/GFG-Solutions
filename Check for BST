@@ -1,0 +1,12 @@
+class Solution {
+    boolean isBST(Node root) {
+        int min=Integer.MIN_VALUE;
+        int max=Integer.MAX_VALUE;
+        return helper(root,min,max);
+    }
+    boolean helper(Node node,int min,int max){
+        if(node==null) return true;
+        if(node.data<=min || node.data>=max) return false;
+        return helper(node.left,min,node.data) && helper(node.right,node.data,max)
+    }
+}
