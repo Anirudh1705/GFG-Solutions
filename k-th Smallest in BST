@@ -1,0 +1,34 @@
+class Solution {
+    // Return the Kth smallest element in the given BST
+    ArrayList<Integer> list = new ArrayList<>();
+    
+    public int kthSmallest(Node root, int k) {
+        // Write your code here
+        int n = countNodes(root);
+        if(k>n)  return -1;
+        
+        inorder(root);
+        int ans = list.get(k-1);
+        
+        return ans;
+    }
+    
+    int countNodes(Node root){
+        if(root == null)  return 0;
+        
+        int left = countNodes(root.left);
+        int right= countNodes(root.right);
+        
+        int totalNodes = left + right + 1;
+        
+        return totalNodes;
+    }
+    
+    void inorder(Node root){
+        if(root == null ) return;
+        
+        inorder(root.left);
+        list.add(root.data);
+        inorder(root.right);
+    }
+}
