@@ -1,0 +1,12 @@
+class Solution {
+    public ArrayList<Integer> kLargest(int[] arr, int k) {
+        // Intialize a max heap 
+        PriorityQueue<Integer> pq=new PriorityQueue<>((a,b)-> b-a);
+        for(int i:arr)
+        pq.add(i);
+        ArrayList<Integer> li=new ArrayList<>();
+        while(k-->0)
+        li.add(pq.poll());
+        return li;
+    }
+}
