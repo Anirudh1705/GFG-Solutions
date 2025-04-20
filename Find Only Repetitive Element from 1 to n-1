@@ -1,0 +1,16 @@
+class Solution {
+    public int findDuplicate(int[] arr) {
+        // code here
+        int n = arr.length;
+        boolean[] seen = new boolean[n];
+        
+        for(int num : arr){
+            if(seen[num]){
+                return num;
+            }
+            seen[num] = true;
+        }
+        
+        return -1;
+    }
+}
