@@ -1,0 +1,27 @@
+class Solution {
+    static int majorityElement(int arr[]) {
+        // code here
+        int count =1;
+        int n= arr.length;
+        Arrays.sort(arr);
+        for( int i=1 ; i<arr.length ; i++){
+            if(arr[i]==arr[i-1]){
+                count ++;
+                 if( count > n/2){
+               return arr[i - 1];
+            
+            }
+            }
+            else{
+                count =1;
+            }
+        }
+             if (count > n / 2) {
+            return arr[n - 1];
+        }
+           
+            
+        
+        return -1;
+    }
+}
