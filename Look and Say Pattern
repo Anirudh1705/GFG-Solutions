@@ -1,0 +1,20 @@
+class Solution {
+    public String countAndSay(int n) {
+        // code here
+        StringBuilder ans=new StringBuilder("1");
+        for(int i=2;i<=n;i++) ans=f(ans);
+        return ans.toString();
+    }
+    
+    StringBuilder f(StringBuilder s){
+        StringBuilder ans=new StringBuilder();
+        int i=0;
+        while(i<s.length()){
+            char c=s.charAt(i);
+            int count=0;
+            while(i<s.length() && s.charAt(i)==c) {count++;i++;}
+            ans.append(count+""+c);
+        }
+        return ans;
+    }
+}
