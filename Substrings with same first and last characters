@@ -1,0 +1,18 @@
+class Solution {
+    public int countSubstring(String s) {
+        int[] freq = new int[26]; // For 26 lowercase letters
+
+        for (char ch : s.toCharArray()) {
+            freq[ch - 'a']++; // Count frequency of each character
+        }
+
+        int result = 0;
+        for (int count : freq) {
+            if (count > 0) {
+                result += count + (count * (count - 1)) / 2;
+            }
+        }
+
+        return result;
+    }
+}
