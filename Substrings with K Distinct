@@ -1,0 +1,22 @@
+class Solution {
+    int helper(String s, int k) {
+        if(k == 0)
+            return 0;
+        HashSet<Character> set = new HashSet<>();
+        int i=0;
+        int ans = 0;
+        for(int j=0; j<s.length(); j++) {
+            set.add(s.charAt(j));
+            while(set.size() > k) {
+                set.remove(s.charAt(i));
+                i++;
+            }
+            // System.out.println(set);
+            ans += j-i+1;
+        }
+        return ans;        
+    }
+    int countSubstr(String s, int k) {
+        return helper(s, k) - helper(s, k-1);
+    }
+}
