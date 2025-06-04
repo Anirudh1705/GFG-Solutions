@@ -1,0 +1,22 @@
+class Solution 
+{ 
+    int solveTab(String s1, String s2, String s3, int n1, int n2, int n3)
+    {
+        int dp[][][]=new int[n1+1][n2+1][n3+1];
+        for(int idx1=1;idx1<=n1;idx1++)
+        {
+            for(int idx2=1;idx2<=n2;idx2++)
+            {
+                for(int idx3=1;idx3<=n3;idx3++)
+                {
+                    if(s1.charAt(idx1-1)==s2.charAt(idx2-1) && s2.charAt(idx2-1)==s3.charAt(idx3-1))
+                        dp[idx1][idx2][idx3]=1+dp[idx1-1][idx2-1][idx3-1];
+                    else
+                        dp[idx1][idx2][idx3]=0+Math.max(dp[idx1-1][idx2][idx3],
+                    Math.max(dp[idx1][idx2-1][idx3],dp[idx1][idx2][idx3-1]));
+                }
+            }
+        }
+        return dp[n1][n2][n3];
+    }
+}
