@@ -1,0 +1,52 @@
+class Solution {
+    static boolean isPrime(int n) {
+        for(int i=2;i*i<=n;i++) {
+            if(n%i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    static void factors(int k, ArrayList<Integer> list) {
+        for(int i=2;i<=k;i++) {
+            if(k%i == 0 && isPrime(i)) {
+                list.add(i);
+            }
+        }
+    }
+    public int largestPowerOfK(int N, int K) {
+        ArrayList<Integer> factorsOfK = new ArrayList<>();
+        factors(K, factorsOfK);
+        int n = factorsOfK.size();
+        int[] countOfFactors = new int[n];
+        for(int i=0;i<n;i++) {
+            int factor = factorsOfK.get(i);
+            int count = 0;
+            for(int j=factor;j<=N;j+=factor) {
+                int num = j;
+                while(num >= factor && num%factor == 0) {
+                    num /= factor;
+                    count++;
+                }
+            }
+            countOfFactors[i] = count;
+        }
+        int[] minCountReq = new int[n];
+        for(int i=0;i<n;i++) {
+            int factor = factorsOfK.get(i);
+            int count = 0, num = K;
+            while(num >= factor && num%factor == 0) {
+                num /= factor;
+                count++;
+            }
+            minCountReq[i] = count;
+        }
+        int ans = Integer.MAX_VALUE;
+        for(int i=0;i<n;i++) {
+            int totalCount = countOfFactors[i];
+            int requiredCount = minCountReq[i];
+            ans = Math.min(ans, totalCount/requiredCount);
+        }
+        return ans == Integer.MAX_VALUE ? 0 : ans;
+    }
+}
