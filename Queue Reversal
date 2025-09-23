@@ -1,0 +1,14 @@
+class Solution {
+    public Queue<Integer> rev(Queue<Integer> queue){
+        //add code here.
+       Stack<Integer> stack = new Stack<>();
+     
+        while(queue.size > 0) {
+           stack.push(queue.poll());
+        }
+        while(stack.size() > 0) {
+           queue.add(stack.pop());
+        }
+        return queue;
+    }
+}
